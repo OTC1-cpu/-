@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>تسجيل طلاب</title>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f0f4f8;
+      padding: 20px;
+      direction: rtl;
+      text-align: right;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    form {
+      margin-bottom: 20px;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input {
+      padding: 10px;
+      margin: 8px 0;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>نموذج تسجيل الطلاب</h2>
+
+  <form id="studentForm">
+    <label for="name">اسم الطالب:</label>
+    <input type="text" id="name" required>
+
+    <label for="phone">رقم التليفون:</label>
+    <input type="tel" id="phone" pattern="[0-9]{10,}" required>
+
+    <button type="submit">تسجيل</button>
+  </form>
+
+  <h3>قائمة الطلاب المسجلين:</h3>
+  <table id="studentTable">
+    <thead>
+      <tr>
+        <th>الاسم</th>
+        <th>رقم التليفون</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- الطلاب هيتعرضوا هنا -->
+    </tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('studentForm');
+    const tableBody = document.getElementById('studentTable').querySelector('tbody');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      if (name && phone) {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${name}</td><td>${phone}</td>`;
+        tableBody.appendChild(row);
+
+        form.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>
